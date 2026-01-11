@@ -1,0 +1,19 @@
+name: Deploy to VPS
+on:
+  push:
+    branches: [ main ] # Khi bạn push code lên nhánh main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}      # IP của VPS
+          username: root
+          key: ${{ secrets.SSH_KEY }}    # Private key bạn vừa copy
+          script: |
+            cd ~/web-demo
+            git pull origin main
+            # Lệnh để khởi động lại web
