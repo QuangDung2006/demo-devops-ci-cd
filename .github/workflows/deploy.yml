@@ -10,9 +10,9 @@ jobs:
       - name: Deploy via SSH
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.HOST }}      # IP của VPS
+          host: ${{ secrets.VPS_HOST }}      # IP của VPS
           username: root
-          key: ${{ secrets.SSH_KEY }}    # Private key bạn vừa copy
+          key: ${{ secrets.SSH_PRIVATE_KEY }}    # Private key 
           script: |
             cd ~/web-demo
             git pull origin main
